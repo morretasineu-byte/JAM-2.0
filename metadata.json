@@ -1,0 +1,6 @@
+{
+  "name": "SELLATS JAM — Especialistes en juntes i segellats a Mallorca",
+  "description": "Segellats professionals a Mallorca per a espais residencials, piscines i embarcacions. Més de 20 anys d'experiència en banys, cuines, fusteries, vidres, façanes, piscines i tarimes nàutiques.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 380" width="1000" height="380" fill="none">
+  <!-- Transparent background for dark theme -->
+  
+  <!-- Main Brand Acronym: JAM in Crisp White -->
+  <g stroke="#FFFFFF" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <!-- J -->
+    <path d="M 320 80 L 320 200 C 320 240 290 265 250 265 C 210 265 185 240 185 210" />
+    
+    <!-- A -->
+    <path d="M 355 265 L 440 80 L 525 265" />
+    <line x1="385" y1="205" x2="495" y2="205" stroke-width="14" stroke-linecap="round" />
+    
+    <!-- M -->
+    <path d="M 565 265 L 565 80 L 660 195 L 755 80 L 755 265" />
+  </g>
+
+  <!-- Technical Terracotta Sealant Bead in Center of M -->
+  <line x1="660" y1="265" x2="660" y2="115" stroke="#E07850" stroke-width="16" stroke-linecap="round" />
+
+  <!-- Professional Caulking / Silicone Gun delivering bead into M -->
+  <g transform="translate(660, 115) rotate(-38)" fill="#FFFFFF" stroke="#FFFFFF">
+    <!-- Precision Extrusion Nozzle -->
+    <polygon points="0,-2.5 24,-6.5 24,6.5 0,2.5" stroke="none" fill="#E07850" />
+    <polygon points="24,-7 30,-7 30,7 24,7" stroke="none" />
+    <!-- Cartridge Cylinder Body -->
+    <rect x="30" y="-11" width="75" height="22" rx="1.5" stroke="none" />
+    <rect x="35" y="-8" width="65" height="3" fill="#D6D3D1" stroke="none" opacity="0.6" />
+    <!-- Cradle Framework Reinforcement -->
+    <line x1="30" y1="14" x2="105" y2="14" stroke-width="3.5" stroke-linecap="round" />
+    <polygon points="105,-13 112,-13 112,13 105,13" stroke="none" />
+    <!-- Mechanical Gear Housing -->
+    <path d="M 112,-13 L 132,-13 L 132,8 L 112,8 Z" stroke="none" />
+    <!-- Ergonomic Pistol Grip Handle -->
+    <path d="M 120,8 L 130,48 L 144,48 L 133,8 Z" stroke="none" stroke-linejoin="round" />
+    <path d="M 127,48.5 Q 137,52 145,48.5" stroke-width="4" stroke-linecap="round" fill="none" />
+    <!-- Trigger Lever -->
+    <path d="M 115,10 C 115,18 119,26 116,30" stroke-width="3.5" stroke-linecap="round" fill="none" />
+    <!-- Plunger Push Rod & Hook -->
+    <line x1="112" y1="-1.5" x2="170" y2="-1.5" stroke-width="5" stroke-linecap="square" fill="none" />
+    <path d="M 170,-1.5 L 170,18 C 170,22 166,24 162,21" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+  </g>
+
+  <!-- Subtitle Descriptor: ESPECIALISTES EN JUNTES I SEGELLATS -->
+  <text x="500" y="330" 
+        text-anchor="middle" 
+        fill="#E7E5E4" 
+        font-family="'Plus Jakarta Sans', system-ui, -apple-system, sans-serif" 
+        font-size="24" 
+        font-weight="700" 
+        letter-spacing="7.5">ESPECIALISTES EN JUNTES I SEGELLATS</text>
+</svg>
