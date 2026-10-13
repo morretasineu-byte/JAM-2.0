@@ -18,8 +18,6 @@ import { ContactSection } from './components/ContactSection';
 import { AboutSection } from './components/AboutSection';
 import { ThreeDomainsOverview } from './components/ThreeDomainsOverview';
 import { Footer } from './components/Footer';
-import { LegalModal, LegalType } from './components/LegalModal';
-import { CookieBanner } from './components/CookieBanner';
 
 export default function App() {
   // 1. Language state: Catalan default, can toggle to Spanish
@@ -37,9 +35,6 @@ export default function App() {
   const [preselectedService, setPreselectedService] = useState<string>('');
   const [preselectedClientRole, setPreselectedClientRole] = useState<string>('');
   const [servicesFilter, setServicesFilter] = useState<string>('all');
-
-  // 3. Legal modal state
-  const [legalModalType, setLegalModalType] = useState<LegalType | null>(null);
 
   // Sync document title, html lang, and URL search param
   useEffect(() => {
@@ -277,24 +272,6 @@ export default function App() {
         lang={lang}
         onLanguageChange={handleLanguageChange}
         onNavigate={handleNavigate}
-        onOpenLegal={() => {
-          window.location.href = 'https://jamlegals.vercel.app/ca/avis-legal';
-        }}
-      />
-
-      {/* Legal Modals */}
-      <LegalModal
-        type={legalModalType}
-        lang={lang}
-        onClose={() => setLegalModalType(null)}
-      />
-
-      {/* Cookie Consent Banner */}
-      <CookieBanner
-        lang={lang}
-        onOpenCookiesPolicy={() => {
-          window.location.href = 'https://jamlegals.vercel.app/ca/avis-legal';
-        }}
       />
     </div>
   );

@@ -1,22 +1,20 @@
 import React from 'react';
 import { Language, ViewState } from '../types';
 import { BUSINESS_CONFIG } from '../data/content';
+import { LEGAL_LINKS } from '../config';
 import { Logo } from './Logo';
-import { LegalType } from './LegalModal';
 import { MapPin, Phone, MessageSquare, Shield, Mail } from 'lucide-react';
 
 interface FooterProps {
   lang: Language;
   onLanguageChange: (lang: Language) => void;
   onNavigate: (view: ViewState, sectionId?: string) => void;
-  onOpenLegal?: (type: LegalType) => void;
 }
 
 export const Footer: React.FC<FooterProps> = ({
   lang,
   onLanguageChange,
   onNavigate,
-  onOpenLegal,
 }) => {
   return (
     <footer className="bg-[#1C1917] text-[#DDD8CE] pt-16 pb-12 border-t border-stone-800">
@@ -29,8 +27,8 @@ export const Footer: React.FC<FooterProps> = ({
             </div>
             <p className="text-xs text-stone-300 leading-relaxed max-w-sm pt-1">
               {lang === 'ca'
-                ? 'Especialistes en juntes i segellats per al sector residencial, piscines i nàutica a Mallorca. Més de 20 anys d’experiència en l’ofici del segellat tècnic.'
-                : 'Especialistas en juntas y sellados para el sector residencial, piscinas y náutica en Mallorca. Más de 20 años de experiencia en el oficio del sellado técnico.'}
+                ? 'Especialistes en juntes i segellats per al sector residencial, piscines i nàutica a Mallorca. Professional amb més de 20 anys d’experiència en l’ofici del segellat tècnic.'
+                : 'Especialistas en juntas y sellados para el sector residencial, piscinas y náutica en Mallorca. Profesional con más de 20 años de experiencia en el oficio del sellado técnico.'}
             </p>
             <div className="pt-2 flex items-center gap-2 text-xs text-stone-400">
               <MapPin className="w-3.5 h-3.5 text-[#C25E38]" />
@@ -181,7 +179,7 @@ export const Footer: React.FC<FooterProps> = ({
 
           <div className="flex flex-wrap items-center gap-4">
             <a
-              href="https://jamlegals.vercel.app/ca/avis-legal"
+              href={LEGAL_LINKS[lang].notice}
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-stone-300 transition-colors cursor-pointer"
@@ -190,7 +188,7 @@ export const Footer: React.FC<FooterProps> = ({
             </a>
             <span aria-hidden="true">·</span>
             <a
-              href="https://jamlegals.vercel.app/ca/avis-legal"
+              href={LEGAL_LINKS[lang].privacy}
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-stone-300 transition-colors cursor-pointer"
@@ -199,12 +197,12 @@ export const Footer: React.FC<FooterProps> = ({
             </a>
             <span aria-hidden="true">·</span>
             <a
-              href="https://jamlegals.vercel.app/ca/avis-legal"
+              href={LEGAL_LINKS[lang].cookies}
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-stone-300 transition-colors cursor-pointer"
             >
-              {lang === 'ca' ? 'Política de cookies' : 'Política de cookies'}
+              {lang === 'ca' ? 'Política de galetes' : 'Política de cookies'}
             </a>
           </div>
         </div>

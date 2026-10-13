@@ -131,8 +131,8 @@ export const ProfessionalsSection: React.FC<ProfessionalsSectionProps> = ({
                 <CheckCircle className="w-4 h-4 text-[#8C3A18] shrink-0 mt-0.5" />
                 <span>
                   {lang === 'ca'
-                    ? 'Més de 20 anys d’experiència professional garantint feina neta.'
-                    : 'Más de 20 años de experiencia profesional garantizando trabajo limpio.'}
+                    ? 'Professional amb més de 20 anys d’experiència garantint feina neta.'
+                    : 'Profesional con más de 20 años de experiencia garantizando trabajo limpio.'}
                 </span>
               </div>
             </div>

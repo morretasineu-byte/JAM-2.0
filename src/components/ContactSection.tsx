@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Language, ContactFormData } from '../types';
 import { BUSINESS_CONFIG, MALLORCA_MUNICIPALITIES, SERVICES_DATA } from '../data/content';
+import { LEGAL_LINKS } from '../config';
 import { Phone, MessageSquare, Send, CheckCircle2, AlertCircle, Mail } from 'lucide-react';
 
 interface ContactSectionProps {
@@ -395,6 +396,102 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                   />
                 </div>
 
+                {/* Informació bàsica sobre protecció de dades */}
+                <div className="p-3.5 bg-stone-100/70 rounded border border-[#DDD8CE] text-[11px] text-[#57534E] space-y-2">
+                  <div className="font-semibold text-[#1C1917] tracking-tight text-[11px]">
+                    {lang === 'ca'
+                      ? 'Informació bàsica sobre protecció de dades'
+                      : 'Información básica sobre protección de datos'}
+                  </div>
+                  <div className="space-y-1.5 leading-relaxed">
+                    <div className="grid grid-cols-1 sm:grid-cols-12 gap-1 border-b border-[#E7E2D8] pb-1.5">
+                      <span className="sm:col-span-4 font-medium text-[#1C1917]">
+                        {lang === 'ca' ? 'Responsable:' : 'Responsable:'}
+                      </span>
+                      <span className="sm:col-span-8 text-[#57534E]">
+                        Joan Albert Moragues Medrano (SELLATS JAM)
+                      </span>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-12 gap-1 border-b border-[#E7E2D8] pb-1.5">
+                      <span className="sm:col-span-4 font-medium text-[#1C1917]">
+                        {lang === 'ca' ? 'Finalitat:' : 'Finalidad:'}
+                      </span>
+                      <span className="sm:col-span-8 text-[#57534E]">
+                        {lang === 'ca'
+                          ? 'Respondre la vostra consulta i elaborar el pressupost sol·licitat'
+                          : 'Responder a tu consulta y elaborar el presupuesto solicitado'}
+                      </span>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-12 gap-1 border-b border-[#E7E2D8] pb-1.5">
+                      <span className="sm:col-span-4 font-medium text-[#1C1917]">
+                        {lang === 'ca' ? 'Legitimació:' : 'Legitimación:'}
+                      </span>
+                      <span className="sm:col-span-8 text-[#57534E]">
+                        {lang === 'ca'
+                          ? 'Consentiment de la persona interessada'
+                          : 'Consentimiento de la persona interesada'}
+                      </span>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-12 gap-1 border-b border-[#E7E2D8] pb-1.5">
+                      <span className="sm:col-span-4 font-medium text-[#1C1917]">
+                        {lang === 'ca' ? 'Destinataris:' : 'Destinatarios:'}
+                      </span>
+                      <span className="sm:col-span-8 text-[#57534E]">
+                        {lang === 'ca'
+                          ? 'Proveïdors tecnològics com a encarregats (CRM, correu, allotjament). Transferències als EUA amb garanties adequades'
+                          : 'Proveedores tecnológicos como encargados (CRM, correo, alojamiento). Transferencias a EE. UU. con garantías adecuadas'}
+                      </span>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-12 gap-1 border-b border-[#E7E2D8] pb-1.5">
+                      <span className="sm:col-span-4 font-medium text-[#1C1917]">
+                        {lang === 'ca' ? 'Drets:' : 'Derechos:'}
+                      </span>
+                      <span className="sm:col-span-8 text-[#57534E]">
+                        {lang === 'ca'
+                          ? 'Accedir, rectificar i suprimir les dades, així com altres drets, com s’explica a la informació addicional'
+                          : 'Acceder, rectificar y suprimir los datos, así como otros derechos, como se explica en la información adicional'}
+                      </span>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-12 gap-1 pt-0.5">
+                      <span className="sm:col-span-4 font-medium text-[#1C1917]">
+                        {lang === 'ca' ? 'Informació addicional:' : 'Información adicional:'}
+                      </span>
+                      <span className="sm:col-span-8 text-[#57534E]">
+                        {lang === 'ca' ? (
+                          <>
+                            Consulteu la{' '}
+                            <a
+                              href={LEGAL_LINKS.ca.privacy}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="underline text-[#1C1917] hover:text-[#8C3A18] font-medium"
+                            >
+                              Política de privacitat
+                            </a>
+                          </>
+                        ) : (
+                          <>
+                            Consulta la{' '}
+                            <a
+                              href={LEGAL_LINKS.es.privacy}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="underline text-[#1C1917] hover:text-[#8C3A18] font-medium"
+                            >
+                              Política de privacidad
+                            </a>
+                          </>
+                        )}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
                 {/* Privacy Consent Checkbox (unmarked by default) */}
                 <div className="pt-2">
                   <label className="flex items-start gap-2.5 cursor-pointer text-[11px] text-[#57534E]">
@@ -407,31 +504,31 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                     <span>
                       {lang === 'ca' ? (
                         <>
-                          Accept la{' '}
+                          He llegit i accepto la{' '}
                           <a
-                            href="https://jamlegals.vercel.app/ca/avis-legal"
+                            href={LEGAL_LINKS.ca.privacy}
                             target="_blank"
                             rel="noopener noreferrer"
                             onClick={(e) => e.stopPropagation()}
-                            className="underline hover:text-[#1C1917]"
+                            className="underline text-[#1C1917] hover:text-[#8C3A18] font-medium"
                           >
-                            política de privacitat
-                          </a>{' '}
-                          i el tractament de les meves dades per respondre a aquesta consulta.
+                            Política de privacitat
+                          </a>
+                          .
                         </>
                       ) : (
                         <>
-                          Acepto la{' '}
+                          He leído y acepto la{' '}
                           <a
-                            href="https://jamlegals.vercel.app/ca/avis-legal"
+                            href={LEGAL_LINKS.es.privacy}
                             target="_blank"
                             rel="noopener noreferrer"
                             onClick={(e) => e.stopPropagation()}
-                            className="underline hover:text-[#1C1917]"
+                            className="underline text-[#1C1917] hover:text-[#8C3A18] font-medium"
                           >
-                            política de privacidad
-                          </a>{' '}
-                          y el tratamiento de mis datos para responder a esta consulta.
+                            Política de privacidad
+                          </a>
+                          .
                         </>
                       )}
                     </span>
