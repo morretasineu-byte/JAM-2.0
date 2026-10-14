@@ -24,6 +24,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
     message: '',
     consent: false,
   });
+  const [website, setWebsite] = useState<string>('');
 
   useEffect(() => {
     if (preselectedService) {
@@ -41,7 +42,31 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState<string>('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  // Helpers to get readable labels in Catalan as required for Airtable
+  const getReadableClientType = (type: string): string => {
+    switch (type) {
+      case 'particular':
+        return 'Particular';
+      case 'fuster_vidrier':
+        return 'Fuster / Vidrier';
+      case 'reforma_constructora':
+        return 'Reformes / Piscines';
+      case 'altres':
+        return 'Nàutica / Altres';
+      default:
+        return type;
+    }
+  };
+
+  const getReadableService = (serviceId: string): string => {
+    if (serviceId === 'altres') {
+      return 'Altres treballs de segellat';
+    }
+    const found = SERVICES_DATA.find((s) => s.id === serviceId);
+    return found ? found.title.ca : serviceId;
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setErrorMessage('');
 
@@ -76,10 +101,43 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
 
     setStatus('submitting');
 
-    // Simulate sending to message reception handler (connected client dispatch)
-    setTimeout(() => {
-      setStatus('success');
-    }, 800);
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          contact: formData.contact,
+          clientType: getReadableClientType(formData.clientType),
+          service: getReadableService(formData.service),
+          municipality: formData.municipality,
+          message: formData.message,
+          consent: formData.consent,
+          lang,
+          website,
+        }),
+      });
+
+      if (response.ok) {
+        setStatus('success');
+      } else {
+        setStatus('error');
+        setErrorMessage(
+          lang === 'ca'
+            ? "No s'ha pogut enviar la consulta. Podeu trucar-nos o escriure'ns per WhatsApp al 678 748 445."
+            : 'No se ha podido enviar la consulta. Puede llamarnos o escribirnos por WhatsApp al 678 748 445.'
+        );
+      }
+    } catch {
+      setStatus('error');
+      setErrorMessage(
+        lang === 'ca'
+          ? "No s'ha pogut enviar la consulta. Podeu trucar-nos o escriure'ns per WhatsApp al 678 748 445."
+          : 'No se ha podido enviar la consulta. Puede llamarnos o escribirnos por WhatsApp al 678 748 445.'
+      );
+    }
   };
 
   return (
@@ -255,6 +313,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                       message: '',
                       consent: false,
                     });
+                    setWebsite('');
                   }}
                   className="px-4 py-2 text-xs font-semibold text-[#1C1917] bg-[#EFECE6] hover:bg-[#DDD8CE] rounded cursor-pointer"
                 >
@@ -263,6 +322,23 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4">
+                {/* Honeypot field for anti-spam: invisible to users */}
+                <div
+                  className="absolute opacity-0 pointer-events-none -left-[9999px] -top-[9999px]"
+                  aria-hidden="true"
+                >
+                  <label htmlFor="form-website">Website</label>
+                  <input
+                    type="text"
+                    id="form-website"
+                    name="website"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    value={website}
+                    onChange={(e) => setWebsite(e.target.value)}
+                  />
+                </div>
+
                 {errorMessage && (
                   <div className="p-3 bg-red-50 border border-red-200 rounded text-xs text-red-700 flex items-center gap-2">
                     <AlertCircle className="w-4 h-4 shrink-0" />
