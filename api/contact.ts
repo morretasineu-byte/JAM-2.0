@@ -20,9 +20,11 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   // 2. Read environment variables
-  const token = process.env.AIRTABLE_TOKEN;
-  const baseId = process.env.AIRTABLE_BASE_ID;
-  const tableName = process.env.AIRTABLE_TABLE_NAME;
+  const token = process.env.AIRTABLE_TOKEN?.trim();
+  const rawBaseId = process.env.AIRTABLE_BASE_ID?.trim();
+  // Support both clean base ID (e.g. appl8M2KL7APmvWhk) and full Airtable URLs
+  const baseId = rawBaseId?.match(/app[a-zA-Z0-9]+/)?.[0] || rawBaseId;
+  const tableName = process.env.AIRTABLE_TABLE_NAME?.trim();
 
   if (!token || !baseId || !tableName) {
     return res.status(500).json({ error: 'Server configuration error' });
